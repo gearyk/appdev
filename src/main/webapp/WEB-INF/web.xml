@@ -14,6 +14,17 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 	</listener>
 	
 	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/accounts/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>timeServlet</servlet-name>
 		<servlet-class>ie.cit.appdev.web.TimeServlet</servlet-class>
 	</servlet>
