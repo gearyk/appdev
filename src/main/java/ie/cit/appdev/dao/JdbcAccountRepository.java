@@ -32,6 +32,11 @@ public class JdbcAccountRepository implements AccountRespository {
 		return jdbcTemplate.query("select id, firstname, lastname from accounts", new AccountRowMapper());
 	}
 
+	public void deleteAccount(String id) {
+		jdbcTemplate.update("Delete from accounts where id=?",id);
+		
+	}
+
 }
 
 

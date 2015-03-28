@@ -18,8 +18,6 @@
 	
 	<context:component-scan base-package="ie.cit.appdev.dao"/>
 	
-	<!-- bean id="accountRepository" class="ie.cit.appdev.dao.JdbcAccountRepository">
-	<constructor-arg ref="dataSource"/>
-	</bean-->
+
 
 </beans>
