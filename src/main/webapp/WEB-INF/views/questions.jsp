@@ -18,23 +18,38 @@
 			<td>${row.index}. </td>
 			<td>${quest.question}</td>
 			<td>${quest.id}</td>
-			<td><input type="submit" value="${quest.answer}. "></td>
-			<td><input type="submit" value="${quest.wrong1}. "></td>
-			<td><input type="submit" value="${quest.wrong2}. "></td>
-			<td><input type="submit" value="${quest.wrong3}. "></td>
-		
 			
-			<td><input name="_method" type="hidden" value="PUT"></td>
-			
-			
-			
-				
+			<td>
+			<form method="get" action="../accounts/quiz/${quest.id}/${quest.answer}/${quest.answer}">
+			<input type="submit" value="${quest.answer}. "></form>
+			</td>
+			<td>
+			<form method="get" action="../accounts/quiz/${quest.id}/${quest.wrong1}/${quest.answer}">
+			<input type="submit" value="${quest.wrong1}. "></form>
+			</td>
+			<td>
+			<form method="get" action="../accounts/quiz/${quest.id}/${quest.wrong2}/${quest.answer}">
+			<input type="submit" value="${quest.wrong2}. "></form>
+			</td>
+			<td>
+			<form method="get" action="../accounts/quiz/${quest.id}/${quest.wrong2}/${quest.answer}">
+			<input type="submit" value="${quest.wrong3}. "></form>
+			</td>		
 		</tr>
   		</form>
  			<br/>
 		</c:forEach>
 		</table>
 		
+	<h4>Quiz</h4>
+		<form method="get" action="../accounts/all">
+		<input type="submit" value="Back to Main Page">
+		</form>
+
+	<h4>Get your Score</h4>
+		<form method="get" action="../accounts/score">
+		<input type="submit" value="Get Score">
+		</form>
 	
 </html>
 

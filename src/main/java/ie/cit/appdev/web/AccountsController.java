@@ -7,6 +7,7 @@ import java.util.List;
 
 import ie.cit.appdev.dao.AccountRespository;
 import ie.cit.appdev.domain.Account;
+import ie.cit.appdev.domain.Question;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,5 +51,8 @@ public class AccountsController {
 		accRepo.deleteAccount(id);
 		return "redirect:all";
 	}
+	
+	
+	
 
 }

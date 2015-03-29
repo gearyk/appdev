@@ -49,5 +49,11 @@ public class Question {
 	public void setWrong3(String wrong3) {
 		this.wrong3 = wrong3;
 	}
+	@Override
+	public String toString() {
+		return "Question Details \nID  : "+this.id+" \nQuestion: "+this.question+" "+" \nAnswer: "+this.answer +"  \nNot showing the wrong answers";
+	}
+	
+	
 
 }

@@ -1,6 +1,5 @@
 package ie.cit.appdev.dao;
 
-import ie.cit.appdev.domain.Account;
 import ie.cit.appdev.domain.Question;
 
 import java.sql.ResultSet;
@@ -25,8 +24,8 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	
-	public List<Question> getQuestions() {
-		return jdbcTemplate.query("select id, question, answer, wrong1, wrong2, wrong3 from quizquestions order by random() limit 5;", new QuizRowMapper());
+	public List<Question> getRandomQuestions() {
+		return jdbcTemplate.query("select id, question, answer, wrong1, wrong2, wrong3 from quizquestions order by random() limit 3;", new QuizRowMapper());
 		
 	}
 
@@ -36,6 +35,8 @@ private JdbcTemplate jdbcTemplate;
 		return jdbcTemplate.query("select * from quizquestions where id=?",new QuizRowMapper(),id);
 		
 	}
+	
+	
 
 }
 class QuizRowMapper implements RowMapper{
