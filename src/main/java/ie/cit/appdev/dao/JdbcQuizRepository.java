@@ -25,7 +25,7 @@ private JdbcTemplate jdbcTemplate;
 	
 	
 	public List<Question> getRandomQuestions() {
-		return jdbcTemplate.query("select id, question, answer, wrong1, wrong2, wrong3 from quizquestions order by random() limit 3;", new QuizRowMapper());
+		return jdbcTemplate.query("select id, question, answer, wrong1, wrong2, wrong3 from quizquestions order by random() limit 10;", new QuizRowMapper());
 		
 	}
 
@@ -38,27 +38,4 @@ private JdbcTemplate jdbcTemplate;
 	
 	
 
-}
-class QuizRowMapper implements RowMapper{
-
-	public Question mapRow(ResultSet rs, int row) throws SQLException {
-		
-		String id=rs.getString("id");
-		String question=rs.getString("question");
-		String answer=rs.getString("answer");
-		String wrong1=rs.getString("wrong1");
-		String wrong2=rs.getString("wrong2");
-		String wrong3=rs.getString("wrong3");
-		Question quizQ=new Question();
-		quizQ.setId(id);
-		quizQ.setQuestion(question);
-		quizQ.setAnswer(answer);
-		quizQ.setWrong1(wrong1);
-		quizQ.setWrong2(wrong2);
-		quizQ.setWrong3(wrong3);
-		return quizQ;
-	}
-	
-
-	
 }

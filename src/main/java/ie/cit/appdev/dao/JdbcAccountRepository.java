@@ -28,6 +28,7 @@ public class JdbcAccountRepository implements AccountRespository {
 				newAccount.getId(),newAccount.getFirstname(),newAccount.getLastname());
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Account> getAllAccounts() {
 		return jdbcTemplate.query("select id, firstname, lastname from accounts", new AccountRowMapper());
 	}
@@ -40,18 +41,3 @@ public class JdbcAccountRepository implements AccountRespository {
 }
 
 
-class AccountRowMapper implements RowMapper{
-
-	public Account mapRow(ResultSet rs, int row) throws SQLException {
-		
-		String id=rs.getString("id");
-		String firstname=rs.getString("firstname");
-		String lastname=rs.getString("lastname");
-		Account acc=new Account();
-		acc.setId(id);
-		acc.setFirstname(firstname);
-		acc.setLastname(lastname);
-		return acc;
-	}
-	
-}

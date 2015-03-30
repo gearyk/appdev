@@ -1,7 +1,6 @@
 <html>
 <h1>Results</h1>
-
-You scored: ${score} out of 3
+You scored: ${score} out of 10
 </html>	
 <br>
 <br>
