@@ -1,13 +1,10 @@
 package ie.cit.appdev.web;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 
 import ie.cit.appdev.dao.AccountRespository;
 import ie.cit.appdev.domain.Account;
-import ie.cit.appdev.domain.Question;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,15 +22,19 @@ public class AccountsController {
 	private AccountRespository accRepo;
 	
 	
-	//returns the model and logical name of the view 
+	@Autowired
+	public AccountsController(AccountRespository accRepo) {
+		super();
+		this.accRepo = accRepo;
+	}
+
 	@RequestMapping("all")
 	public ModelAndView getAllAccounts(){
 		List<Account> allAccounts=accRepo.getAllAccounts();
 		HashMap<String, Object> model=new HashMap<String, Object>();
 		model.put("allaccounts", allAccounts);
 		return new ModelAndView("allaccounts",model);
-		
-	}
+		}
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
 	public String createAccount(@RequestParam String firstname, @RequestParam String lastname){
@@ -42,16 +43,13 @@ public class AccountsController {
 			acc.setLastname(lastname);
 			accRepo.addAccount(acc);
 			return "redirect:all";
-			
-		
-	}
+			}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
 	public String deleteAccount(@PathVariable String id){
 		accRepo.deleteAccount(id);
 		return "redirect:all";
 	}
-	
 	
 	
 
