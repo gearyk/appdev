@@ -44,9 +44,8 @@ public class QuizControllerTest {
 	@Test
 	public void testGetQuestions() {
 		model = new ExtendedModelMap();
-		List<Question> sessionQuestions=sessionRepo.getQuizQuestions();
 		mav=tested.getQuestions();
-		model.put("questions", sessionQuestions);
+		assertThat(mav.getModel(),notNullValue());
 		assertThat(mav,notNullValue());
 		assertThat("questions", CoreMatchers.equalTo(mav.getViewName()));
 		verify(sessionRepo).getQuizQuestions();
@@ -55,7 +54,9 @@ public class QuizControllerTest {
 	@Test
 	public void testSetQuestions(){
 		mav=tested.setQuestions();
+		assertThat(mav.getModel(),notNullValue());
 		assertThat("Model is not null",mav,notNullValue());
+		assertThat("questions", CoreMatchers.equalTo(mav.getViewName()));
 		verify(sessionRepo).getQuizQuestions();
 		verify(quizRepo).getRandomQuestions();
 	}
@@ -69,6 +70,8 @@ public class QuizControllerTest {
 	@Test
 	public void testGetScore() {
 		mav=tested.getScore();
+		assertThat("score", CoreMatchers.equalTo(mav.getViewName()));
+		assertThat(mav.getModel(),notNullValue());
 		assertThat(mav,notNullValue());
 		verify(sessionRepo).getScore();
 	}
