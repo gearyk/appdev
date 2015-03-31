@@ -4,9 +4,11 @@ package ie.cit.appdev.web;
 import java.util.HashMap;
 import java.util.List;
 
+import ie.cit.appdev.dao.AccountRespository;
 import ie.cit.appdev.dao.QuizRepository;
 import ie.cit.appdev.dao.SessionRepository;
 import ie.cit.appdev.domain.Question;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,13 @@ public class QuizController {
 	private QuizRepository quizRepo;
 	@Autowired
 	private SessionRepository thisSession;
+	
+	@Autowired
+	public QuizController(QuizRepository quizRepo, SessionRepository thisSession) {
+		super();
+		this.quizRepo = quizRepo;
+		this.thisSession=thisSession;
+	}
 
 
 	@RequestMapping("quiz")
@@ -31,10 +40,7 @@ public class QuizController {
 		HashMap<String, Object> model=new HashMap<String, Object>();
 		model.put("questions", sessionQuestions);
 		return new ModelAndView("questions",model);
-
-
 	}
-
 
 	@RequestMapping("setquiz")
 	public ModelAndView setQuestions(){
@@ -45,16 +51,12 @@ public class QuizController {
 		model.put("questions", sessionQuestions);
 		return new ModelAndView("questions",model);
 		//return "redirect:/accounts/quiz";
-
 	}
-
-
 
 	@RequestMapping(value="/quiz/{myId}/{attemptAnswer}/{answer}", method=RequestMethod.GET)
 	public String answer(@PathVariable String myId, @PathVariable String attemptAnswer,@PathVariable String answer){
 		thisSession.updateAnswerResult(attemptAnswer,answer, myId);
 		return "redirect:/accounts/quiz";
-
 	}
 
 	@RequestMapping("score")
@@ -63,8 +65,6 @@ public class QuizController {
 		HashMap<String, String> model=new HashMap<String, String>();
 		model.put("score", result);
 		return new ModelAndView("score",model);
-
-
 	}
 
 }

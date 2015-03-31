@@ -25,14 +25,9 @@ public class TimeServlet extends HttpServlet{
 	public void init() throws ServletException{
 		ServletContext servletContext=getServletContext();
 		WebApplicationContext ctx=WebApplicationContextUtils.getWebApplicationContext(servletContext);
-		accRepository = ctx.getBean(AccountRespository.class);
-		
-		
-		
-		
+		accRepository = ctx.getBean(AccountRespository.class);	
 	}
 	
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -40,9 +35,7 @@ public class TimeServlet extends HttpServlet{
 		String msg=String.format("Current time is %s", new Date().toString());
 		pw.print(msg);
 		pw.close();
-		//List<Account> all=accRepository.getAllAccounts();
-		//System.out.print(all);
-		
+			
 	}
 	
 }

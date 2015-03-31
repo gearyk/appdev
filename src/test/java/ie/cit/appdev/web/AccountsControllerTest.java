@@ -5,6 +5,7 @@ import ie.cit.appdev.domain.Account;
 
 import java.util.List;
 
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Description;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,7 @@ public class AccountsControllerTest {
 	private AccountRespository accRepo;
 	private AccountsController tested;
 	private ExtendedModelMap model;
+	private ModelAndView mav;
 
 	@Before
 	public void setup(){
@@ -31,7 +33,10 @@ public class AccountsControllerTest {
 
 	@Test
 	public void testGetAllAccounts() {
-		ModelAndView mav=tested.getAllAccounts();
+		model = new ExtendedModelMap();
+		mav=tested.getAllAccounts();
+		model.put("allaccounts", mav);
+		assertThat("allaccounts", CoreMatchers.equalTo(mav.getViewName()));
 		assertThat(mav,notNullValue());
 		verify(accRepo).getAllAccounts();
 		
