@@ -7,73 +7,65 @@ import static org.mockito.Mockito.mock;
 
 import static org.mockito.Mockito.verify;
 
-import java.util.List;
-
-import ie.cit.appdev.dao.QuizRepository;
-import ie.cit.appdev.dao.SessionRepository;
-import ie.cit.appdev.domain.Question;
+import ie.cit.appdev.service.QuizService;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;
-import org.springframework.web.servlet.ModelAndView;
+
 
 public class QuizControllerTest {
 
-	private QuizRepository quizRepo;
-	private SessionRepository sessionRepo;
+
 	private QuizController tested;
-	private ModelAndView mav;
+
 	private ExtendedModelMap model;
-	//private ExtendedModelMap model;
+	private QuizService quizService;
+
 
 	@Before
 	public void setup(){
-		quizRepo=mock(QuizRepository.class);
-		sessionRepo=mock(SessionRepository.class);
-		tested=new QuizController(quizRepo,sessionRepo);
+		quizService=mock(QuizService.class);
+		//sessionRepo=mock(SessionRepository.class);
+		tested=new QuizController(quizService);
 	}
-	
-	//model = new ExtendedModelMap();
-	
-	
-	
-	
-	
+
+		
 	@Test
 	public void testGetQuestions() {
 		model = new ExtendedModelMap();
-		mav=tested.getQuestions();
-		assertThat(mav.getModel(),notNullValue());
-		assertThat(mav,notNullValue());
-		assertThat("questions", CoreMatchers.equalTo(mav.getViewName()));
-		verify(sessionRepo).getQuizQuestions();
+		//mav=tested.getQuestions();
+		String all=tested.getQuestions(model);
+		//assertThat(mav.getModel(),notNullValue());
+		assertThat(all,notNullValue());
+		assertThat("questions", CoreMatchers.equalTo(all));
+		verify(quizService).getQuizQuestions();
 	}
 	
 	@Test
 	public void testSetQuestions(){
-		mav=tested.setQuestions();
-		assertThat(mav.getModel(),notNullValue());
-		assertThat("Model is not null",mav,notNullValue());
-		assertThat("questions", CoreMatchers.equalTo(mav.getViewName()));
-		verify(sessionRepo).getQuizQuestions();
-		verify(quizRepo).getRandomQuestions();
+		model = new ExtendedModelMap();
+		String questions=tested.setQuestions(model);
+		assertThat(questions,notNullValue());
+		assertThat("questions", CoreMatchers.equalTo(questions));
+		///verify(quizService).getQuizQuestions();
+		//((QuizRepository) verify(quizService)).getRandomQuestions();
 	}
 	
 	@Test
 	public void testAnswer() {
 	tested.answer("3", "attempt", "answer");
-	verify(sessionRepo).updateAnswerResult("attempt", "answer", "3");
+	verify(quizService).updateAnswerResult("attempt", "answer", "3");
 	}
 	
 	@Test
 	public void testGetScore() {
-		mav=tested.getScore();
-		assertThat("score", CoreMatchers.equalTo(mav.getViewName()));
-		assertThat(mav.getModel(),notNullValue());
-		assertThat(mav,notNullValue());
-		verify(sessionRepo).getScore();
+		model = new ExtendedModelMap();
+		String score=tested.getScore(model);
+		assertThat("score", CoreMatchers.equalTo(score));
+		assertThat(score,notNullValue());
+		//verify(quizService).getScore();
 	}
 
 }

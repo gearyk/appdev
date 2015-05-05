@@ -1,11 +1,6 @@
 package ie.cit.appdev;
 
-import java.util.List;
 
-import ie.cit.appdev.dao.AccountRespository;
-import ie.cit.appdev.domain.Account;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class QuizApplication {
 	

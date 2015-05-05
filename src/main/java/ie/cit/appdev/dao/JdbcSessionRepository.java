@@ -5,6 +5,7 @@ import ie.cit.appdev.domain.Question;
 
 
 
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -63,6 +64,7 @@ public class JdbcSessionRepository implements SessionRepository{
 	}
 
 	//Count the correct answers
+	@SuppressWarnings("deprecation")
 	public String getScore() {
 
 		return Integer.toString(jdbcTemplate.queryForInt("select count (result) from quizsession where result = 'correct'"));
