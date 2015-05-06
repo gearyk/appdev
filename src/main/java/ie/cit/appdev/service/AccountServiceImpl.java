@@ -40,4 +40,9 @@ public class AccountServiceImpl implements AccountService{
 		
 	}
 
+
+	public Account getByID(String id) {
+		return repo.findById(id);
+	}
+
 }

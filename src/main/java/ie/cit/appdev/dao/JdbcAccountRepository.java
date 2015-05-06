@@ -3,13 +3,13 @@ package ie.cit.appdev.dao;
 import ie.cit.appdev.domain.Account;
 
 
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,6 +35,13 @@ public class JdbcAccountRepository implements AccountRespository {
 	public void deleteAccount(String id) {
 		jdbcTemplate.update("Delete from accounts where id=?",id);
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Account findById(String id) {
+		return jdbcTemplate.queryForObject(
+				"select id, firstname, lastname from accounts where id=?",
+				new AccountRowMapper(), id);
 	}
 
 }

@@ -9,5 +9,6 @@ public interface AccountRespository {
 	void addAccount(Account newAccount);
 	List<Account> getAllAccounts();
 	void deleteAccount(String id);
+	Account findById(String id);
 
 }

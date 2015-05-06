@@ -10,6 +10,6 @@ public interface AccountService {
 	List<Account> getAllAccounts();
 	Account createNewAccount(String firstname, String Surname);
 	void deleteAccount(String id);
-		
+	Account getByID(String id);
 	
 }
