@@ -19,13 +19,27 @@ public class AccountServiceIntegrationTest {
 	@Autowired
 	AccountService tested;
 	Account newAcc;
+	Account fromDB;
 	
 	@Test @Transactional
 	public void testCreateNewAccount(){
 		newAcc=tested.createNewAccount("integrationFN", "integrationLN");
-		Account fromDB=tested.getByID(newAcc.getId());
+		fromDB=tested.getByID(newAcc.getId());
 		Assert.assertThat(newAcc.getFirstname(), CoreMatchers.equalTo(fromDB.getFirstname()));
 		Assert.assertThat(newAcc.getLastname(), CoreMatchers.equalTo(fromDB.getLastname()));
+	}
+	
+	@Test @Transactional
+	public void testDeleteAccount(){
+		newAcc=tested.createNewAccount("integrationFN", "integrationLN");
+		String accountID=newAcc.getId();
+		fromDB=tested.getByID(accountID);
+		Assert.assertThat(newAcc.getFirstname(), CoreMatchers.equalTo(fromDB.getFirstname()));
+		Assert.assertThat(newAcc.getLastname(), CoreMatchers.equalTo(fromDB.getLastname()));
+		int numberOfAccounts=tested.getAllAccounts().size();
+		tested.deleteAccount(accountID);
+		Assert.assertTrue("Not deleted - List of all accounts was not decremented"
+				, numberOfAccounts==(tested.getAllAccounts().size()+1)  );
 	}
 	
 	
