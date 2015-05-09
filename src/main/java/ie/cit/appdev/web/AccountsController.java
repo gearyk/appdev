@@ -33,9 +33,16 @@ public class AccountsController {
 		return "allaccounts";
 		}
 	
+//	@RequestMapping(value="/",method=RequestMethod.POST)
+//	public String createAccount(@RequestParam String firstname, @RequestParam String lastname){
+//			accService.createNewAccount(firstname, lastname);
+//			return "redirect:all";
+//			}
+	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String createAccount(@RequestParam String firstname, @RequestParam String lastname){
-			accService.createNewAccount(firstname, lastname);
+	public String createAccount(@RequestParam String firstname, @RequestParam String lastname, 
+			@RequestParam String username, @RequestParam String password  ){
+			accService.createNewAccount(firstname, lastname, username, password);
 			return "redirect:all";
 			}
 

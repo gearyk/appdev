@@ -7,6 +7,8 @@ public class Account {
 	private String id;
 	private String firstname;
 	private String lastname;
+	private String username;
+	private String password;
 	
 	public Account(){
 		this.id=UUID.randomUUID().toString();
@@ -36,6 +38,24 @@ public class Account {
 		
 		return "User Account is: \nID  : "+this.id+" \nName: "+this.firstname+" "+this.lastname;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 	
 	
 

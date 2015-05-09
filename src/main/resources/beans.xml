@@ -4,7 +4,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
@@ -13,26 +15,57 @@
 	<context:component-scan base-package="ie.cit.appdev.dao"/>
 	<context:component-scan base-package="ie.cit.appdev.service"/>
 	<tx:annotation-driven/>
+	
 	<bean id="transactionManager"
 	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<beans profile="default">
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="org.postgresql.Driver"></property>
-	<property name="url" value="${localdb.url}"></property>
-	<property name="username" value="${localdb.username}"></property>
-	<property name="password" value="${localdb.password}"></property>
+	<bean id="bcryptEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"
+>
 	</bean>
+	
+	
+	
+ 
+	
+	<security:http>
+		<security:csrf disabled="true" />
+		<security:intercept-url pattern="/accounts/**"
+			access="hasRole('USER')" />
+		<security:form-login default-target-url="/accounts/all" />
+		<security:http-basic />
+		<security:logout />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			
+			<!-->security:user-service>
+				<>security:user name="kevin" authorities="ROLE_USER" password="pass" />
+				</security:user-service-->
+				<security:password-encoder hash="bcrypt" />
+			<security:jdbc-user-service data-source-ref="dataSource" />
+			
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	<beans profile="default">
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver"></property>
+		<property name="url" value="${localdb.url}"></property>
+		<property name="username" value="${localdb.username}"></property>
+		<property name="password" value="${localdb.password}"></property>
+		</bean>
 	</beans>
 	
 	<beans profile="cloud">
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClassName" value="org.postgresql.Driver"></property>
-	<property name="url" value="${db.url}"></property>
-	<property name="username" value="${db.username}"></property>
-	<property name="password" value="${db.password}"></property>
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver"></property>
+		<property name="url" value="${db.url}"></property>
+		<property name="username" value="${db.username}"></property>
+		<property name="password" value="${db.password}"></property>
 	</bean>
 	</beans>
 	

@@ -8,9 +8,10 @@
 <br>
 <br>
 <h4>Existing Users - Log in and take the quiz</h4>
-<form method="get" action= <%= request.getRequestURL() %>accounts/all >                       
-<input type="submit" value="Login">
-<br>
+<form method="get" action= <%= request.getRequestURL() %>accounts/setquiz >                       
+<input type="submit" value="Take Quiz">
+</form>
+
 <br>
 <br>
 <h4>New Users - Sign Up here</h4>

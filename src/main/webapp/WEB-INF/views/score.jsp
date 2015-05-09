@@ -1,5 +1,10 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html>
-<h1>Results</h1>
+<sec:authentication property="principal" var="user"/>
+<br> 
+<a href="../logout">Logout</a>
+
+<h1>Results for ${user.username} </h1>
 You scored: ${score} out of 10
 </html>	
 <br>

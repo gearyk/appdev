@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html>
+<sec:authentication property="principal" var="user"/>
+${user.username}
+<br> 
+<a href="../logout">Logout</a>
 <style>
 <!-- CSS goes in the document HEAD or added to your external stylesheet -->
 <style type="text/css">
@@ -57,6 +62,8 @@ table.gridtable td {
 <form method="post" action="../accounts/">
 First name:<br> <input name="firstname" type="text" value=""><br>
 Second name:<br> <input name="lastname" type="text" value=""><br>
+username:<br> <input name="username" type="text" value=""><br>
+password:<br> <input name="password" type="text" value=""><br>
 <br>
 <input name="create" type="submit" value="Create Account">
 </form>
