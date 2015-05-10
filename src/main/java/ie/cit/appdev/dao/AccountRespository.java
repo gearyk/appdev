@@ -12,5 +12,7 @@ public interface AccountRespository {
 	Account findById(String id);
 	void updateLeaderBoard(Account Account, String score);
 	Account findByUsername(String username);
+	String getUsername(String id);
+	String getPassword(String id);
 
 }

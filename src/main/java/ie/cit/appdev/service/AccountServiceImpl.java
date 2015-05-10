@@ -77,5 +77,13 @@ public class AccountServiceImpl implements AccountService{
 	public Account getByUsername(String username) {
 		return repo.findByUsername(username);
 	}
+	
+	public String getAccountPassword(String id){
+		return repo.getPassword(id);
+	}
+	
+	public String getAccountUsername(String id){
+		return repo.getUsername(id);
+	}
 
 }

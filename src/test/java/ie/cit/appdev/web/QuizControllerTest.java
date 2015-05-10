@@ -6,12 +6,14 @@ import static org.mockito.Mockito.mock;
 
 
 import static org.mockito.Mockito.verify;
-
+import ie.cit.appdev.domain.Account;
+import ie.cit.appdev.service.AccountService;
 import ie.cit.appdev.service.QuizService;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ExtendedModelMap;
 
 
@@ -22,14 +24,16 @@ public class QuizControllerTest {
 
 	private ExtendedModelMap model;
 	private QuizService quizService;
+	private AccountService accountService;
+	private Account test;
+	
 
-
-//	@Before
-//	public void setup(){
-//		quizService=mock(QuizService.class);
-//		//sessionRepo=mock(SessionRepository.class);
-//		tested=new QuizController(quizService);
-//	}
+	@Before
+	public void setup(){
+		quizService=mock(QuizService.class);
+		accountService=mock(AccountService.class);
+		tested=new QuizController(quizService,accountService);
+	}
 
 		
 	@Test
@@ -49,8 +53,8 @@ public class QuizControllerTest {
 		String questions=tested.setQuestions(model);
 		assertThat(questions,notNullValue());
 		assertThat("questions", CoreMatchers.equalTo(questions));
-		///verify(quizService).getQuizQuestions();
-		//((QuizRepository) verify(quizService)).getRandomQuestions();
+		verify(quizService).setQuiz();
+		
 	}
 	
 	@Test
@@ -59,13 +63,15 @@ public class QuizControllerTest {
 	verify(quizService).updateAnswerResult("attempt", "answer", "3");
 	}
 	
-//	@Test
-//	public void testGetScore() {
-//		model = new ExtendedModelMap();
-//		String score=tested.getScore(model);
-//		assertThat("score", CoreMatchers.equalTo(score));
-//		assertThat(score,notNullValue());
-//		//verify(quizService).getScore();
-//	}
+	@Test
+	public void testGetScore() {
+		model = new ExtendedModelMap();
+		String score=tested.getScore("myUsername",model);
+		test=accountService.getByUsername("myUsername");
+		assertThat("score", CoreMatchers.equalTo(score));
+		assertThat(score,notNullValue());
+		//verify(accountService).getByUsername("myUsername");
+		verify(accountService).updateLeaderBoard(test, quizService.getScore());
+	}
 
 }

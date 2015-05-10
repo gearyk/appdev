@@ -33,12 +33,6 @@ public class Account {
 		this.lastname = lastname;
 	}
 
-	@Override
-	public String toString() {
-		
-		return "User Account is: \nID  : "+this.id+" \nName: "+this.firstname+" "+this.lastname;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -55,7 +49,11 @@ public class Account {
 		this.password = password;
 	}
 
-
+	@Override
+	public String toString() {
+		
+		return "User Account is: \nID  : "+this.id+" \nName: "+this.firstname+" "+this.lastname+" "+this.username+" "+this.password;
+	}
 	
 	
 

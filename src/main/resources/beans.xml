@@ -47,29 +47,22 @@
 		</security:authentication-provider>
 	</security:authentication-manager>
 	
-	<beans profile="default">
+	<!-->beans profile="default"-->
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver"></property>
 		<property name="url" value="${localdb.url}"></property>
 		<property name="username" value="${localdb.username}"></property>
 		<property name="password" value="${localdb.password}"></property>
 		</bean>
-	</beans>
+	<!-->/beans-->
 	
-	<beans profile="cloud">
+	<!-->beans profile="cloud">
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver"></property>
 		<property name="url" value="${db.url}"></property>
 		<property name="username" value="${db.username}"></property>
 		<property name="password" value="${db.password}"></property>
 	</bean>
-	</beans>
-	
-	
-	
-	
-	
-	
-
+	</beans-->
 
 </beans>

@@ -40,60 +40,67 @@ public class AccountsControllerTest {
 		
 	}
 	
-//	@Test
-//	public void testCreateAccount(){
-//		tested.createAccount("myFirstName", "myLastName");
-//		verify(accRepo).addAccount(argThat(new ArgumentMatcher<Account>() {
-//
-//					@Override
-//					public boolean matches(Object argument) {
-//						
-//						return (((Account) argument).getFirstname().equals("myFirstName") && ((Account) argument).getLastname().equals("myLastName"));
-//					}
-//					
-//
-//					@Override
-//					public void describeTo(Description description) {
-//						description.appendText("expected: an Account with myFirstName and myLastName");
-//					}
-//				}));
-//		
-//	}
 	
-//	@Test
-//	public void testCreateAccount(){
-//		tested.createAccount("myFirstName", "myLastName");
-//		verify(accountService).createNewAccount(
-//		
-//		argThat(new ArgumentMatcher<String>() {
-//
-//					@Override
-//					public boolean matches(Object argument) {
-//						
-//						return ((String) argument).equals("myFirstName");
-//					}
-//					
-//					@Override
-//					public void describeTo(Description description) {
-//						description.appendText("expected: an Account with myFirstName");
-//					}
-//				}), 
-//				
-//				argThat(new ArgumentMatcher<String>() {
-//
-//					@Override
-//					public boolean matches(Object argument) {
-//						
-//						return ((String) argument).equals("myLastName");
-//					}
-//					
-//					@Override
-//					public void describeTo(Description description) {
-//						description.appendText("expected: an Account with myLastName");
-//					}
-//				}));
-//		
-//	}
+	@Test
+	public void testCreateAccount(){
+		tested.createAccount("myFirstName", "myLastName","myUsername","myPassword");
+		verify(accountService).createNewAccount(
+		
+		argThat(new ArgumentMatcher<String>() {
+
+					@Override
+					public boolean matches(Object argument) {
+						
+						return ((String) argument).equals("myFirstName");
+					}
+					
+					@Override
+					public void describeTo(Description description) {
+						description.appendText("expected: an Account with myFirstName");
+					}
+				}), 
+				
+				argThat(new ArgumentMatcher<String>() {
+
+					@Override
+					public boolean matches(Object argument) {
+						
+						return ((String) argument).equals("myLastName");
+					}
+					
+					@Override
+					public void describeTo(Description description) {
+						description.appendText("expected: an Account with myLastName");
+					}
+				}),
+				argThat(new ArgumentMatcher<String>() {
+
+					@Override
+					public boolean matches(Object argument) {
+						
+						return ((String) argument).equals("myUsername");
+					}
+					
+					@Override
+					public void describeTo(Description description) {
+						description.appendText("expected: an Account with myUsername");
+					}
+				}),
+				argThat(new ArgumentMatcher<String>() {
+
+					@Override
+					public boolean matches(Object argument) {
+						
+						return ((String) argument).equals("myPassword");
+					}
+					
+					@Override
+					public void describeTo(Description description) {
+						description.appendText("expected: an Account with myPassword");
+					}
+				}));
+		
+	}
 	
 	
 	@Test

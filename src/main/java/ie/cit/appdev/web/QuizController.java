@@ -54,9 +54,7 @@ public class QuizController {
 
 	@RequestMapping(value="/quiz/{username}", method=RequestMethod.GET)
 	public String getScore(@PathVariable String username, Model model){
-		System.out.println("Hello1");
 		Account test=accountService.getByUsername(username);
-		System.out.println("Hello1");
 		accountService.updateLeaderBoard(test, quizService.getScore());
 		model.addAttribute("score", quizService.getScore());
 		return "score";

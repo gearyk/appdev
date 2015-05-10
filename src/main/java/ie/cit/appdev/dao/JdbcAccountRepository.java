@@ -70,6 +70,18 @@ public class JdbcAccountRepository implements AccountRespository {
 				Account.getId(),Account.getFirstname(),Account.getLastname(),score);
 		
 	}
+	
+	
+	public String getUsername(String id){
+		return (String)jdbcTemplate.queryForObject("select username from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
+	
+	}
+	
+	public String getPassword(String id){
+		
+		return (String)jdbcTemplate.queryForObject("select password from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
+	
+	}
 
 	
 
