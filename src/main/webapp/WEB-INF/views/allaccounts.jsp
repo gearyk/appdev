@@ -2,7 +2,6 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html>
 <sec:authentication property="principal" var="user"/>
-${user.username}
 <br> 
 <a href="../logout">Logout</a>
 <style>

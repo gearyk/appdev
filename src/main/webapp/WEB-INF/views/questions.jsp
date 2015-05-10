@@ -1,6 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html>
+
+<sec:authentication property="principal" var="user"/>
+<br> 
+<a href="../logout">Logout</a>
 <style>
 <!-- CSS goes in the document HEAD or added to your external stylesheet -->
 <style type="text/css">
@@ -70,6 +74,7 @@ table.gridtable td {
 			</td>		
 		</tr>
 		</c:forEach>
+		
 		</table>
 		
 		
@@ -81,7 +86,7 @@ table.gridtable td {
 		</form>
 	</tr>
 	<tr>
-		<form method="get" action="../accounts/score">
+		<form method="get" action="../accounts/quiz/${user.username}">
 		<input type="submit" value="Get Score">
 		</form>
 	</tr>

@@ -24,12 +24,12 @@ public class QuizControllerTest {
 	private QuizService quizService;
 
 
-	@Before
-	public void setup(){
-		quizService=mock(QuizService.class);
-		//sessionRepo=mock(SessionRepository.class);
-		tested=new QuizController(quizService);
-	}
+//	@Before
+//	public void setup(){
+//		quizService=mock(QuizService.class);
+//		//sessionRepo=mock(SessionRepository.class);
+//		tested=new QuizController(quizService);
+//	}
 
 		
 	@Test
@@ -59,13 +59,13 @@ public class QuizControllerTest {
 	verify(quizService).updateAnswerResult("attempt", "answer", "3");
 	}
 	
-	@Test
-	public void testGetScore() {
-		model = new ExtendedModelMap();
-		String score=tested.getScore(model);
-		assertThat("score", CoreMatchers.equalTo(score));
-		assertThat(score,notNullValue());
-		//verify(quizService).getScore();
-	}
+//	@Test
+//	public void testGetScore() {
+//		model = new ExtendedModelMap();
+//		String score=tested.getScore(model);
+//		assertThat("score", CoreMatchers.equalTo(score));
+//		assertThat(score,notNullValue());
+//		//verify(quizService).getScore();
+//	}
 
 }

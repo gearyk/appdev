@@ -12,5 +12,7 @@ public interface AccountService {
 	Account createNewAccount(String firstname, String Surname, String username, String password);
 	void deleteAccount(String id);
 	Account getByID(String id);
+	Account getByUsername(String username);
+	void updateLeaderBoard(Account acc, String score);
 	
 }

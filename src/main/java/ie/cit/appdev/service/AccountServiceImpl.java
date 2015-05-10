@@ -3,6 +3,8 @@ package ie.cit.appdev.service;
 import ie.cit.appdev.domain.Account;
 import ie.cit.appdev.dao.AccountRespository;
 
+
+
 //import org.mindrot.jbcrypt.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -63,6 +65,17 @@ public class AccountServiceImpl implements AccountService{
 
 	public Account getByID(String id) {
 		return repo.findById(id);
+	}
+
+	public void updateLeaderBoard(Account acc, String score) {
+		Account currentAcc=acc;
+		String sessionScore=score;
+		repo.updateLeaderBoard(currentAcc, sessionScore);
+		
+	}
+
+	public Account getByUsername(String username) {
+		return repo.findByUsername(username);
 	}
 
 }

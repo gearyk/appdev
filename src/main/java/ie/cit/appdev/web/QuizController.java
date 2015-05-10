@@ -1,12 +1,10 @@
 package ie.cit.appdev.web;
 
 
-
-
-
-
-
+import ie.cit.appdev.domain.Account;
+import ie.cit.appdev.service.AccountService;
 import ie.cit.appdev.service.QuizService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,21 +19,17 @@ public class QuizController {
 	@Autowired
 	private QuizService quizService;
 	
+	@Autowired
+	private AccountService accountService;
+	
 	
 	@Autowired
-	public QuizController(QuizService quizService) {
+	public QuizController(QuizService quizService, AccountService accountService) {
 		this.quizService = quizService;
+		this.accountService=accountService;
 		
 	}
 
-
-//	@RequestMapping("quiz")
-//	public ModelAndView getQuestions(){
-//		List<Question> sessionQuestions=thisSession.getQuizQuestions();
-//		HashMap<String, Object> model=new HashMap<String, Object>();
-//		model.put("questions", sessionQuestions);
-//		return new ModelAndView("questions",model);
-//	}
 	
 	@RequestMapping("quiz")
 	public String getQuestions(Model model){
@@ -51,36 +45,19 @@ public class QuizController {
 	}
 	
 
-//	@RequestMapping("setquiz")
-//	public ModelAndView setQuestions(){
-//		List<Question> quizQuestions=quizRepo.getRandomQuestions();
-//		thisSession.setQuiz(quizQuestions);
-//		List<Question> sessionQuestions=thisSession.getQuizQuestions();
-//		HashMap<String, Object> model=new HashMap<String, Object>();
-//		model.put("questions", sessionQuestions);
-//		return new ModelAndView("questions",model);
-//		//return "redirect:/accounts/quiz";
-//	}
-
 	@RequestMapping(value="/quiz/{myId}/{attemptAnswer}/{answer}", method=RequestMethod.GET)
 	public String answer(@PathVariable String myId, @PathVariable String attemptAnswer,@PathVariable String answer){
 		quizService.updateAnswerResult(attemptAnswer,answer, myId);
-		//thisSession.updateAnswerResult(attemptAnswer,answer, myId);
 		return "redirect:/accounts/quiz";
 	}
 
-//	@RequestMapping("score")
-//	public ModelAndView getScore(){
-//		String result= thisSession.getScore();
-//		HashMap<String, String> model=new HashMap<String, String>();
-//		model.put("score", result);
-//		return new ModelAndView("score",model);
-//	}
-	@RequestMapping("score")
-	public String getScore(Model model){
-		//String result= thisSession.getScore();
-		//HashMap<String, String> model=new HashMap<String, String>();
-		//model.put("score", result);
+
+	@RequestMapping(value="/quiz/{username}", method=RequestMethod.GET)
+	public String getScore(@PathVariable String username, Model model){
+		System.out.println("Hello1");
+		Account test=accountService.getByUsername(username);
+		System.out.println("Hello1");
+		accountService.updateLeaderBoard(test, quizService.getScore());
 		model.addAttribute("score", quizService.getScore());
 		return "score";
 	}

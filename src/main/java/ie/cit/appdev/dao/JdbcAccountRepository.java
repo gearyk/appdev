@@ -5,6 +5,9 @@ import ie.cit.appdev.domain.Account;
 
 
 
+
+
+
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -53,6 +56,22 @@ public class JdbcAccountRepository implements AccountRespository {
 				"select id, firstname, lastname from accounts where id=?",
 				new AccountRowMapper(), id);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Account findByUsername(String username) {
+		return jdbcTemplate.queryForObject
+				("select id, firstname, lastname from accounts where id in "
+						+ "( select id from users where username=?)",new AccountRowMapper(), username);
+		
+	}
+
+	public void updateLeaderBoard(Account Account, String score) {
+		jdbcTemplate.update("Insert into highscore(id,firstname,lastname,score) values (?,?,?,?)", 
+				Account.getId(),Account.getFirstname(),Account.getLastname(),score);
+		
+	}
+
+	
 
 }
 
