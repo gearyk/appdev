@@ -45,7 +45,7 @@ public class AccountServiceIntegrationTest {
 		Assert.assertThat(newAcc.getUsername(), CoreMatchers.equalTo(uname));
 		Assert.assertThat(newAcc.getPassword(), CoreMatchers.equalTo(pwd));
 		int numberOfAccounts=tested.getAllAccounts().size();
-		tested.deleteAccount(accountID);
+		tested.deleteAccount(accountID,"intergrationUN");
 		Assert.assertTrue("Not deleted - List of all accounts was not decremented"
 				, numberOfAccounts==(tested.getAllAccounts().size()+1)  );
 	}

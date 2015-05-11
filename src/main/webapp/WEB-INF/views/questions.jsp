@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html>
-
 <sec:authentication property="principal" var="user"/>
 <br> 
 <a href="../logout">Logout</a>
@@ -53,7 +52,7 @@ table.gridtable td {
   	</tr>
 <c:forEach items="${questions}" var="quest" varStatus="row">
 		<tr>
-			<td>${row.index}. </td>
+			<td>${row.index+1}. </td>
 			<td>${quest.question}</td>
 			
 			<td>

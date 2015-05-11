@@ -8,7 +8,7 @@ public interface AccountRespository {
 	
 	void addAccount(Account newAccount);
 	List<Account> getAllAccounts();
-	void deleteAccount(String id);
+	void deleteAccount(String id, String username);
 	Account findById(String id);
 	void updateLeaderBoard(Account Account, String score);
 	Account findByUsername(String username);

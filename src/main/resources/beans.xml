@@ -29,6 +29,7 @@
 		<security:csrf disabled="true" />
 		<security:intercept-url pattern="/accounts/score/**" access="hasRole('USER')" />
 		<security:intercept-url pattern="/accounts/setquiz" access="hasRole('USER')" />
+		<security:intercept-url pattern="/accounts/quiz/**" access="hasRole('USER')" />
 		<security:intercept-url pattern="/accounts/all" access="permitAll" />
 		<security:form-login default-target-url="/" />
 		<security:http-basic />

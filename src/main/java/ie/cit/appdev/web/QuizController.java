@@ -57,7 +57,14 @@ public class QuizController {
 		Account test=accountService.getByUsername(username);
 		accountService.updateLeaderBoard(test, quizService.getScore());
 		model.addAttribute("score", quizService.getScore());
+		model.addAttribute("leaderboard",quizService.getHighscores());
 		return "score";
 	}
+	
+//	@RequestMapping(value="/quiz/{username}", method=RequestMethod.GET)
+//	public String logout(@PathVariable String username, Model model){
+//		return "/login?logout";
+//		
+//	}
 
 }

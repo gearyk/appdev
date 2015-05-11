@@ -57,8 +57,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 
-	public void deleteAccount(String id) {
-		repo.deleteAccount(id);
+	public void deleteAccount(String id, String username) {
+		repo.deleteAccount(id,username);
 		
 	}
 

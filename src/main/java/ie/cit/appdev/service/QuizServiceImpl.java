@@ -2,6 +2,7 @@ package ie.cit.appdev.service;
 
 import ie.cit.appdev.dao.QuizRepository;
 import ie.cit.appdev.dao.SessionRepository;
+import ie.cit.appdev.domain.Leaderboard;
 import ie.cit.appdev.domain.Question;
 
 import java.util.List;
@@ -45,6 +46,12 @@ public class QuizServiceImpl implements QuizService{
 	public String getScore() {
 		return sessionrepo.getScore();
 	
+	}
+
+	public List<Leaderboard> getHighscores() {
+		List<Leaderboard> leaderboard=quizrepo.getHighscores();
+		System.out.print(leaderboard.get(0).toString());
+		return leaderboard;
 	}
 
 }

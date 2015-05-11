@@ -9,7 +9,7 @@ public interface AccountService {
 	
 	List<Account> getAllAccounts();
 	Account createNewAccount(String firstname, String Surname, String username, String password);
-	void deleteAccount(String id);
+	void deleteAccount(String id, String username);
 	Account getByID(String id);
 	Account getByUsername(String username);
 	void updateLeaderBoard(Account acc, String score);

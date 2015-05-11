@@ -49,7 +49,8 @@ public class AccountsController {
 	
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
 	public String deleteAccount(@PathVariable String id){
-		accService.deleteAccount(id);
+		String uname=accService.getAccountUsername(id);
+		accService.deleteAccount(id,uname);
 		return "redirect:all";
 	}
 	

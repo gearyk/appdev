@@ -106,7 +106,7 @@ public class AccountsControllerTest {
 	@Test
 	public void testDeleteAccount(){
 		tested.deleteAccount("accountID");
-		verify(accountService).deleteAccount("accountID");
+		verify(accountService).deleteAccount("accountID",accountService.getAccountUsername("accountID"));
 		
 	}
 
