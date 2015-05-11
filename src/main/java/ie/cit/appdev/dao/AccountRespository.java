@@ -14,5 +14,6 @@ public interface AccountRespository {
 	Account findByUsername(String username);
 	String getUsername(String id);
 	String getPassword(String id);
+	boolean isAdmin(String id);
 
 }

@@ -5,6 +5,10 @@ import ie.cit.appdev.dao.AccountRespository;
 
 
 
+
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 //import org.mindrot.jbcrypt.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -46,7 +50,16 @@ public class AccountServiceImpl implements AccountService{
 
 
 	public void deleteAccount(String id, String username) {
+		//only admin users can perform a delete
+		Account acc;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    acc=repo.findByUsername(name);
+		if(repo.isAdmin(acc.getId()))
+		{
 		repo.deleteAccount(id,username);
+		}
+		
 		
 	}
 
@@ -72,6 +85,10 @@ public class AccountServiceImpl implements AccountService{
 	
 	public String getAccountUsername(String id){
 		return repo.getUsername(id);
+	}
+	
+	public boolean isUserAdmin(String id){
+		return repo.isAdmin(id);
 	}
 
 }

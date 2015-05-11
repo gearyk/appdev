@@ -4,22 +4,20 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.io.*,java.util.*" %>
 
-<br>
-<br>
-<br>
-<h4>Existing Users - Log in and take the quiz</h4>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/gridtable.css"/>
+<h1>Existing Users - Log in and take the quiz</h1>
+</head>
+<body>
 <form method="get" action= <%= request.getRequestURL() %>accounts/setquiz >                       
 <input type="submit" value="Take Quiz">
 </form>
 
 <br>
 <br>
-<h4>New Users - Sign Up here</h4>
-
-
-
-		<form method="get" action= <%= request.getRequestURL() %>accounts/all >                       
+<h1>New Users - Sign Up here</h1>
+	<form method="get" action= <%= request.getRequestURL() %>accounts/all >                       
 		<input type="submit" value="Sign Up">
-		</form>
-
+	</form>
+</body>
 </html>

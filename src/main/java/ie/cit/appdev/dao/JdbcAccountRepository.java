@@ -8,6 +8,8 @@ import ie.cit.appdev.domain.Account;
 
 
 
+
+
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -80,6 +82,26 @@ public class JdbcAccountRepository implements AccountRespository {
 
 		return (String)jdbcTemplate.queryForObject("select password from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
 
+	}
+
+	@SuppressWarnings("deprecation")
+	public boolean isAdmin(String id) {
+		boolean isAdmin=false;
+		System.out.println("****************");
+		System.out.println("String id : "+id);
+		System.out.println("****************");
+		System.out.println("****************");
+		int result=jdbcTemplate.queryForInt("select count(*) from authorities where authority ='ROLE_ADMIN' and username in (select username from users where id=?)",id);
+		System.out.println("****************");
+		System.out.println(result);
+		System.out.println("****************");
+		System.out.println("****************");
+		System.out.println("****************");
+		if (result==1)
+		{
+			isAdmin=true;
+		}
+		return isAdmin ;
 	}
 
 

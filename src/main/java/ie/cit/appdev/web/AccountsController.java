@@ -41,8 +41,8 @@ public class AccountsController {
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
 	public String createAccount(@RequestParam String firstname, @RequestParam String lastname, 
-			@RequestParam String username, @RequestParam String password  ){
-			accService.createNewAccount(firstname, lastname, username, password);
+			@RequestParam String username, @RequestParam String pwd  ){
+			accService.createNewAccount(firstname, lastname, username, pwd);
 			return "redirect:all";
 			}
 
