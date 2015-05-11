@@ -3,6 +3,7 @@ package ie.cit.appdev;
 import java.util.List;
 
 import ie.cit.appdev.domain.Account;
+import ie.cit.appdev.domain.Leaderboard;
 import ie.cit.appdev.service.AccountService;
 import ie.cit.appdev.domain.Question;
 import ie.cit.appdev.service.QuizService;
@@ -25,6 +26,7 @@ public class QuizServiceIntegrationTest {
 	QuizService qs;
 	List<Question> getQuiz;
 	List<Question> getRandom;
+	List<Leaderboard> getLeaderboard;
 	
 	
 	@Test @Transactional
@@ -40,6 +42,13 @@ public class QuizServiceIntegrationTest {
 	}
 	
 	@Test @Transactional
+	//This test assumes that we have some data in the leaderboard
+	public void testGetHighscore(){
+		getLeaderboard =qs.getHighscores();
+		Assert.assertNotNull("A table is returned", getLeaderboard);
+	}
+	
+	@Test @Transactional
 	public void testGetScore(){
 		String score =qs.getScore();
 		Assert.assertNotNull(score);
@@ -47,13 +56,7 @@ public class QuizServiceIntegrationTest {
 	
 	@Test @Transactional
 	public void testUpdateAnswerResult(){
-		
 		qs.updateAnswerResult("attempt", "answer", "ID123");
-		
-		
-		
 	}
-	
-
 
 }

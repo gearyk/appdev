@@ -27,18 +27,6 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	
-	
-	
-	
-//	public Account createNewAccount(String firstname, String surname) {
-//		Account acc=new Account();
-//		acc.setFirstname(firstname);
-//		acc.setLastname(surname);
-//		repo.addAccount(acc);
-//		return acc;
-//	}
 
 	public Account createNewAccount(String firstname, String surname, String username, String password) {
 		Account acc=new Account();

@@ -13,5 +13,4 @@ public interface QuizService {
 	String getScore();
 	List<Leaderboard> getHighscores();
 	
-
 }

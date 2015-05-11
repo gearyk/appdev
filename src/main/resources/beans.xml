@@ -16,13 +16,11 @@
 	<context:component-scan base-package="ie.cit.appdev.service"/>
 	<tx:annotation-driven/>
 	
-	<bean id="transactionManager"
-	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="bcryptEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	<bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	</bean>
 	
 	<security:http>
@@ -38,13 +36,11 @@
 	
 	<security:authentication-manager>
 		<security:authentication-provider>
-			
 			<!-->security:user-service>
-				<>security:user name="kevin" authorities="ROLE_USER" password="pass" />
-				</security:user-service-->
-				<security:password-encoder hash="bcrypt" />
+				<security:user name="kevin" authorities="ROLE_USER" password="pass" />
+			</security:user-service-->
+			<security:password-encoder hash="bcrypt" />
 			<security:jdbc-user-service data-source-ref="dataSource" />
-			
 		</security:authentication-provider>
 	</security:authentication-manager>
 	

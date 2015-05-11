@@ -22,12 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class JdbcAccountRepository implements AccountRespository {
 
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	public JdbcAccountRepository(DataSource dataSource){
 		jdbcTemplate=new JdbcTemplate(dataSource);
 	}
-	
+
 	//This is a user account create - no admin access
 	public void addAccount(Account newAccount) {
 		jdbcTemplate.update("Insert into accounts(id,firstname,lastname) values (?,?,?)", 
@@ -36,7 +36,7 @@ public class JdbcAccountRepository implements AccountRespository {
 				newAccount.getUsername(),newAccount.getPassword(),true,newAccount.getId());
 		jdbcTemplate.update("insert into authorities(username,authority) values (?,?)", 
 				newAccount.getUsername(),"ROLE_USER");
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -48,43 +48,41 @@ public class JdbcAccountRepository implements AccountRespository {
 		jdbcTemplate.update("Delete from accounts where id=?",id);
 		jdbcTemplate.update("Delete from authorities where username=?",username);
 		jdbcTemplate.update("Delete from users where id=?",id);
-		
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Account findById(String id) {
-		return jdbcTemplate.queryForObject(
-				"select id, firstname, lastname from accounts where id=?",
+		return jdbcTemplate.queryForObject("select id, firstname, lastname from accounts where id=?",
 				new AccountRowMapper(), id);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Account findByUsername(String username) {
-		return jdbcTemplate.queryForObject
-				("select id, firstname, lastname from accounts where id in "
+		return jdbcTemplate.queryForObject ("select id, firstname, lastname from accounts where id in "
 						+ "( select id from users where username=?)",new AccountRowMapper(), username);
-		
+
 	}
 
 	public void updateLeaderBoard(Account Account, String score) {
 		jdbcTemplate.update("Insert into highscore(id,firstname,lastname,score) values (?,?,?,?)", 
 				Account.getId(),Account.getFirstname(),Account.getLastname(),score);
-		
-	}
-	
-	
-	public String getUsername(String id){
-		return (String)jdbcTemplate.queryForObject("select username from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
-	
-	}
-	
-	public String getPassword(String id){
-		
-		return (String)jdbcTemplate.queryForObject("select password from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
-	
+
 	}
 
-	
+
+	public String getUsername(String id){
+		return (String)jdbcTemplate.queryForObject("select username from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
+
+	}
+
+	public String getPassword(String id){
+
+		return (String)jdbcTemplate.queryForObject("select password from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
+
+	}
+
+
 
 }
 

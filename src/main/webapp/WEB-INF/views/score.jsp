@@ -36,34 +36,32 @@ table.gridtable td {
 }
 </style>
 
-<h1>Results for ${user.username} </h1>
+<h1>Results for ${user.username}</h1>
 You scored: ${score} out of 10
-</html>	
 <br>
 <br>
 Current Leaderboard
 <br>
 <table class="gridtable">
-<tr>
+	<tr>
 	    <th>Position</th>
 	    <th>Firstname</th> 
 	    <th>Surname</th>
 	    <th>Score</th>
-	    
-  	</tr>
+	</tr>
 <c:forEach items="${leaderboard}" var="ld" varStatus="row">
-
-		<tr>
-			<td>${row.index+1}. </td>
-			<td>${ld.firstname}</td>
-			<td>${ld.lastname}</td>
-			<td>${ld.score}</td>
-			</tr>
-			</c:forEach>
+	<tr>
+		<td>${row.index+1}. </td>
+		<td>${ld.firstname}</td>
+		<td>${ld.lastname}</td>
+		<td>${ld.score}</td>
+	</tr>
+</c:forEach>
 <br>
 </table>
 <br>
 <h4>Quiz</h4>
-		<form method="get" action="../../accounts/all">
+	<form method="get" action="../../accounts/all">
 		<input type="submit" value="Back to Main Page">
-		</form>
+	</form>
+</html>	

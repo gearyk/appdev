@@ -5,7 +5,7 @@ import ie.cit.appdev.domain.Account;
 import java.util.List;
 
 public interface AccountRespository {
-	
+
 	void addAccount(Account newAccount);
 	List<Account> getAllAccounts();
 	void deleteAccount(String id, String username);
