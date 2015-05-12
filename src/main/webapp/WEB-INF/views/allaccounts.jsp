@@ -5,7 +5,7 @@
 <br> 
 <a href="../logout">Logout</a>
 <head>
-<link rel="stylesheet" type="text/css" href="src/main/webapp/cssgridtable.css"/>
+<link rel="stylesheet" type="text/css" href="css/gridtable.css"/>
 </head>
 
 <h1>All Accounts</h1>
@@ -35,14 +35,14 @@
 <br/>
 
 <h4>Create New Account</h4>
-	<form method="post" action="../accounts/">
-		First name:<br> <input name="firstname" type="text" value=""><br>
-		Second name:<br> <input name="lastname" type="text" value=""><br>
-		username:<br> <input name="username" type="text" value=""><br>
-		password:<br> <input type="password" name=pwd type="text" value=""><br>
-		<br>
-		<input name="create" type="submit" value="Create Account">
-	</form>
+<form method="post" action="../accounts/">
+First name:<br> <input name="firstname" type="text" value=""><br>
+Second name:<br> <input name="lastname" type="text" value=""><br>
+username:<br> <input name="username" type="text" value=""><br>
+password:<br> <input type="password" name type="text" value=""><br>
+<br>
+<input name="create" type="submit" value="Create Account">
+</form>
 
 
 
