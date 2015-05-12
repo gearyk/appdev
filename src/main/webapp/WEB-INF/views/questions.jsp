@@ -4,8 +4,6 @@
 <%@ page contentType="text/html" %>
 <%@page import="java.util.*" %>
 
-<%= (int) (Math.random() * 10) %>
-<%= (int) (Math.random() * 10) %>
 
 <html>
 <sec:authentication property="principal" var="user"/>
