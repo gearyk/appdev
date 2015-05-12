@@ -53,11 +53,13 @@ public class AccountServiceImpl implements AccountService{
 		//only admin users can perform a delete
 		Account acc;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String name = auth.getName(); //get logged in username
-	    acc=repo.findByUsername(name);
-		if(repo.isAdmin(acc.getId()))
-		{
-		repo.deleteAccount(id,username);
+		if (!auth.getPrincipal().equals("anonymousUser")){
+		    String name = auth.getName(); //get logged in username
+		    acc=repo.findByUsername(name);
+				if(repo.isAdmin(acc.getId()))
+				{
+				repo.deleteAccount(id,username);
+				}
 		}
 		
 		
