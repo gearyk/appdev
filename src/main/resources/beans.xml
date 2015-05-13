@@ -29,6 +29,7 @@
 	<bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	</bean>
 	
+
 	<security:http>
 		<security:csrf disabled="true" />
 		<security:intercept-url pattern="/accounts/score/**" access="hasRole('USER')" />

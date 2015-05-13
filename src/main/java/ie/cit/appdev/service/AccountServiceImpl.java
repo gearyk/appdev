@@ -29,6 +29,7 @@ public class AccountServiceImpl implements AccountService{
 		this.repo = repo;
 	}
 	
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -49,13 +50,11 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 
-	public void deleteAccount(String id, String username) {
-		//only admin users can perform a delete
+	public void deleteAccount(String id, String username, String auth) {
+		
 		Account acc;
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (!auth.getPrincipal().equals("anonymousUser")){
-		    String name = auth.getName(); //get logged in username
-		    acc=repo.findByUsername(name);
+		if (!auth.equals("anonymousUser")){
+		 acc=repo.findByUsername(auth);
 				if(repo.isAdmin(acc.getId()))
 				{
 				repo.deleteAccount(id,username);

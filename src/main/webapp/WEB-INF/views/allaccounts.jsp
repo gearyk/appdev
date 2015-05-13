@@ -39,7 +39,7 @@
 First name:<br> <input name="firstname" type="text" value=""><br>
 Second name:<br> <input name="lastname" type="text" value=""><br>
 username:<br> <input name="username" type="text" value=""><br>
-password:<br> <input type="password" name type="text" value=""><br>
+password:<br> <input type="password" name="pwd" type="text" value=""><br>
 <br>
 <input name="create" type="submit" value="Create Account">
 </form>

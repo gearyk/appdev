@@ -2,6 +2,7 @@ package ie.cit.appdev.web;
 
 import ie.cit.appdev.dao.AccountRespository;
 import ie.cit.appdev.service.AccountService;
+import ie.cit.appdev.service.AuthenticationService;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Description;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.springframework.ui.ExtendedModelMap;
+
 
 
 import static org.junit.Assert.*;
@@ -22,12 +24,15 @@ public class AccountsControllerTest {
 	private AccountsController tested;
 	private ExtendedModelMap model;
 	private AccountService accountService;
+	private AuthenticationService auth;
 
 	@Before
 	public void setup(){
 		accountService=mock(AccountService.class);
 		accRepo=mock(AccountRespository.class);
-		tested=new AccountsController(accountService);
+		auth=mock(AuthenticationService.class);
+		tested=new AccountsController(accountService,auth);
+		
 	}
 
 	@Test
@@ -106,7 +111,7 @@ public class AccountsControllerTest {
 	@Test
 	public void testDeleteAccount(){
 		tested.deleteAccount("accountID");
-		verify(accountService).deleteAccount("accountID",accountService.getAccountUsername("accountID"));
+		verify(accountService).deleteAccount("accountID",accountService.getAccountUsername("accountID"),auth.getAuthentication());
 		
 	}
 

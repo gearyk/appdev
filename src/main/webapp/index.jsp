@@ -1,13 +1,14 @@
 <html>
-<h1>Quiz App</h1>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.io.*,java.util.*" %>
 
 <head>
-<h2>Existing Users - Log in and take the quiz</h1>
+<h1>Quiz App</h1>
 </head>
 <body>
+<h2>Existing Users - Log in here and take the quiz</h1>
 <form method="get" action= <%= request.getRequestURL() %>accounts/setquiz >                       
 <input type="submit" value="Take Quiz">
 </form>
@@ -41,6 +42,12 @@ h2 {
 }
 p{
     color:grey;
+    font-family:Calibri;
+    font-size:120%;
+}
+input[type="submit"]
+{
+    color:black;
     font-family:Calibri;
     font-size:120%;
 }
