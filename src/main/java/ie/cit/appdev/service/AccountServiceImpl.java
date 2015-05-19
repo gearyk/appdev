@@ -7,8 +7,6 @@ import ie.cit.appdev.dao.AccountRespository;
 
 
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 //import org.mindrot.jbcrypt.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

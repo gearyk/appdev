@@ -3,8 +3,6 @@ package ie.cit.appdev.service;
 
 import java.util.List;
 
-import org.springframework.security.core.Authentication;
-
 import ie.cit.appdev.domain.Account;
 
 public interface AccountService {

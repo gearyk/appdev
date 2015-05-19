@@ -17,7 +17,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (auth == null) {
                      return "null";
             } else {
-                     return  (String) auth.getName();
+                     return  auth.getName();
             }
 	}
 

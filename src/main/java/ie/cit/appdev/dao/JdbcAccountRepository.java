@@ -55,13 +55,13 @@ public class JdbcAccountRepository implements AccountRespository {
 
 	@SuppressWarnings("unchecked")
 	public Account findById(String id) {
-		return jdbcTemplate.queryForObject("select id, firstname, lastname from accounts where id=?",
+		return (Account) jdbcTemplate.queryForObject("select id, firstname, lastname from accounts where id=?",
 				new AccountRowMapper(), id);
 	}
 
 	@SuppressWarnings("unchecked")
 	public Account findByUsername(String username) {
-		return jdbcTemplate.queryForObject ("select id, firstname, lastname from accounts where id in "
+		return (Account) jdbcTemplate.queryForObject ("select id, firstname, lastname from accounts where id in "
 						+ "( select id from users where username=?)",new AccountRowMapper(), username);
 
 	}
@@ -74,13 +74,13 @@ public class JdbcAccountRepository implements AccountRespository {
 
 
 	public String getUsername(String id){
-		return (String)jdbcTemplate.queryForObject("select username from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
+		return jdbcTemplate.queryForObject("select username from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
 
 	}
 
 	public String getPassword(String id){
 
-		return (String)jdbcTemplate.queryForObject("select password from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
+		return jdbcTemplate.queryForObject("select password from users where id in ( select id from accounts where id=?)", new Object[]{id},String.class);
 
 	}
 
